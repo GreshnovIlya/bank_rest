@@ -21,21 +21,21 @@ Backend‑приложение на Spring Boot для управления ба
 
 ## 📁 Структура проекта
 * src/
-* ├── main/
-* │   ├── java/com/example/bankcards/       # Основной пакет приложения
-* │   │   ├── controller/                   # Контроллеры API
-* │   │   ├── service/                      # Бизнес‑логика
-* │   │   ├── repository/                   # Репозитории JPA
-* │   │   ├── model/                        # Entity‑классы
-* │   │   ├── security/                     # Конфигурация безопасности
-* │   │   ├── config/                       # Конфигурационные классы
-* │   │   └── exception/                    # Обработчики исключений
-* │   └── resources/
-* │       ├── application.yml               # Конфигурация приложения
-* │       ├── db/changelog/                 # Liquibase‑миграции
-* ├── test/                                 # Юнит‑тесты
-* └── docs/
-*     └── openapi.yaml                      # Спецификация API
+* ├ main/
+* │   ├ java/com/example/bankcards/       # Основной пакет приложения
+* │   │   ├ controller/                   # Контроллеры API
+* │   │   ├ service/                      # Бизнес‑логика
+* │   │   ├ repository/                   # Репозитории JPA
+* │   │   ├ model/                        # Entity‑классы
+* │   │   ├ security/                     # Конфигурация безопасности
+* │   │   ├ config/                       # Конфигурационные классы
+* │   │   └ exception/                    # Обработчики исключений
+* │   └ resources/
+* │       ├ application.yml               # Конфигурация приложения
+* │       ├ db/changelog/                 # Liquibase‑миграции
+* └ test/                                 # Юнит‑тесты
+* docs/
+*   └ openapi.yaml                        # Спецификация API
 
 # 🌐 API (OpenAPI / Swagger)
 Спецификация: docs/openapi.yaml
