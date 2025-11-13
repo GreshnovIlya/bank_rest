@@ -1,0 +1,1093 @@
+"openapi": "3.0.1",
+             "info": {
+               "title": "OpenAPI definition",
+               "version": "v0"
+             },
+             "servers": [
+               {
+                 "url": "http://localhost:8080",
+                 "description": "Generated server url"
+               }
+             ],
+             "paths": {
+               "/authorization/registration": {
+                 "post": {
+                   "tags": [
+                     "Авторизация"
+                   ],
+                   "summary": "Регистрация пользователя",
+                   "operationId": "registration",
+                   "requestBody": {
+                     "content": {
+                       "application/json": {
+                         "schema": {
+                           "$ref": "#/components/schemas/RegistrationRequest"
+                         }
+                       }
+                     },
+                     "required": true
+                   },
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "201": {
+                       "description": "Created",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "type": "string"
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
+               },
+               "/authorization/authorization": {
+                 "post": {
+                   "tags": [
+                     "Авторизация"
+                   ],
+                   "summary": "Авторизация пользователя",
+                   "operationId": "authorization",
+                   "requestBody": {
+                     "content": {
+                       "application/json": {
+                         "schema": {
+                           "$ref": "#/components/schemas/AuthorizationRequest"
+                         }
+                       }
+                     },
+                     "required": true
+                   },
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "200": {
+                       "description": "OK",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "type": "string"
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
+               },
+               "/admin/cards": {
+                 "get": {
+                   "tags": [
+                     "Возможности админа"
+                   ],
+                   "summary": "Получение карт",
+                   "operationId": "getCards_1",
+                   "parameters": [
+                     {
+                       "name": "username",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "string",
+                         "default": ""
+                       }
+                     },
+                     {
+                       "name": "cardStatus",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "string",
+                         "default": ""
+                       }
+                     },
+                     {
+                       "name": "page",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "integer",
+                         "format": "int32",
+                         "default": 0
+                       }
+                     },
+                     {
+                       "name": "size",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "integer",
+                         "format": "int32",
+                         "default": 10
+                       }
+                     },
+                     {
+                       "name": "sortBy",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "string",
+                         "default": "id"
+                       }
+                     },
+                     {
+                       "name": "sortMode",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "string",
+                         "default": "asc"
+                       }
+                     }
+                   ],
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "200": {
+                       "description": "OK",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "type": "array",
+                             "items": {
+                               "$ref": "#/components/schemas/CardDto"
+                             }
+                           }
+                         }
+                       }
+                     }
+                   }
+                 },
+                 "post": {
+                   "tags": [
+                     "Возможности админа"
+                   ],
+                   "summary": "Создание карты",
+                   "operationId": "createCard",
+                   "requestBody": {
+                     "content": {
+                       "application/json": {
+                         "schema": {
+                           "$ref": "#/components/schemas/NewCardDto"
+                         }
+                       }
+                     },
+                     "required": true
+                   },
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "201": {
+                       "description": "Created",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/CardDto"
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
+               },
+               "/user/cards/{cardNumber}/block": {
+                 "patch": {
+                   "tags": [
+                     "Возможности пользователя"
+                   ],
+                   "summary": "Блокировка карты",
+                   "operationId": "blockCard",
+                   "parameters": [
+                     {
+                       "name": "cardNumber",
+                       "in": "path",
+                       "required": true,
+                       "schema": {
+                         "type": "string"
+                       }
+                     }
+                   ],
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "200": {
+                       "description": "OK",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/CardDto"
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
+               },
+               "/user/cards/transfers/{amount}/from/{cardNumberSender}/to/{cardNumberRecipient}": {
+                 "patch": {
+                   "tags": [
+                     "Возможности пользователя"
+                   ],
+                   "summary": "Перевод между картами одного пользователя",
+                   "operationId": "transfersBetweenCards",
+                   "parameters": [
+                     {
+                       "name": "cardNumberSender",
+                       "in": "path",
+                       "required": true,
+                       "schema": {
+                         "type": "string"
+                       }
+                     },
+                     {
+                       "name": "cardNumberRecipient",
+                       "in": "path",
+                       "required": true,
+                       "schema": {
+                         "type": "string"
+                       }
+                     },
+                     {
+                       "name": "amount",
+                       "in": "path",
+                       "required": true,
+                       "schema": {
+                         "type": "number",
+                         "format": "double"
+                       }
+                     }
+                   ],
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "204": {
+                       "description": "No Content"
+                     }
+                   }
+                 }
+               },
+               "/admin/cards/{cardNumber}/block": {
+                 "patch": {
+                   "tags": [
+                     "Возможности админа"
+                   ],
+                   "summary": "Блокировка карты",
+                   "operationId": "blockCard_1",
+                   "parameters": [
+                     {
+                       "name": "cardNumber",
+                       "in": "path",
+                       "required": true,
+                       "schema": {
+                         "type": "string"
+                       }
+                     }
+                   ],
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "200": {
+                       "description": "OK",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/CardDto"
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
+               },
+               "/admin/cards/{cardNumber}/activate": {
+                 "patch": {
+                   "tags": [
+                     "Возможности админа"
+                   ],
+                   "summary": "Активация карты",
+                   "operationId": "activateCard",
+                   "parameters": [
+                     {
+                       "name": "cardNumber",
+                       "in": "path",
+                       "required": true,
+                       "schema": {
+                         "type": "string"
+                       }
+                     }
+                   ],
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "200": {
+                       "description": "OK",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/CardDto"
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
+               },
+               "/user/cards": {
+                 "get": {
+                   "tags": [
+                     "Возможности пользователя"
+                   ],
+                   "summary": "Получение карт",
+                   "operationId": "getCards",
+                   "parameters": [
+                     {
+                       "name": "page",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "integer",
+                         "format": "int32",
+                         "default": 0
+                       }
+                     },
+                     {
+                       "name": "size",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "integer",
+                         "format": "int32",
+                         "default": 10
+                       }
+                     },
+                     {
+                       "name": "sortBy",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "string",
+                         "default": "id"
+                       }
+                     },
+                     {
+                       "name": "sortMode",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "string",
+                         "default": "asc"
+                       }
+                     }
+                   ],
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "200": {
+                       "description": "OK",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "type": "array",
+                             "items": {
+                               "$ref": "#/components/schemas/CardDto"
+                             }
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
+               },
+               "/user/cards/{cardNumber}/balance": {
+                 "get": {
+                   "tags": [
+                     "Возможности пользователя"
+                   ],
+                   "summary": "Получение баланса",
+                   "operationId": "getBalance",
+                   "parameters": [
+                     {
+                       "name": "cardNumber",
+                       "in": "query",
+                       "required": true,
+                       "schema": {
+                         "type": "string"
+                       }
+                     }
+                   ],
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "204": {
+                       "description": "No Content",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "type": "number",
+                             "format": "double"
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
+               },
+               "/admin/users": {
+                 "get": {
+                   "tags": [
+                     "Возможности админа"
+                   ],
+                   "summary": "Получение пользователей",
+                   "operationId": "getUsers",
+                   "parameters": [
+                     {
+                       "name": "page",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "integer",
+                         "format": "int32",
+                         "default": 0
+                       }
+                     },
+                     {
+                       "name": "size",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "integer",
+                         "format": "int32",
+                         "default": 10
+                       }
+                     },
+                     {
+                       "name": "sortBy",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "string",
+                         "default": "id"
+                       }
+                     },
+                     {
+                       "name": "sortMode",
+                       "in": "query",
+                       "required": false,
+                       "schema": {
+                         "type": "string",
+                         "default": "asc"
+                       }
+                     }
+                   ],
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "200": {
+                       "description": "OK",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "type": "array",
+                             "items": {
+                               "$ref": "#/components/schemas/UserDto"
+                             }
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
+               },
+               "/admin/users/{username}": {
+                 "delete": {
+                   "tags": [
+                     "Возможности админа"
+                   ],
+                   "summary": "Удаление пользователя",
+                   "operationId": "deleteUser",
+                   "parameters": [
+                     {
+                       "name": "username",
+                       "in": "path",
+                       "required": true,
+                       "schema": {
+                         "type": "string"
+                       }
+                     }
+                   ],
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "204": {
+                       "description": "No Content"
+                     }
+                   }
+                 }
+               },
+               "/admin/cards/{cardNumber}": {
+                 "delete": {
+                   "tags": [
+                     "Возможности админа"
+                   ],
+                   "summary": "Удаление карты",
+                   "operationId": "deleteCard",
+                   "parameters": [
+                     {
+                       "name": "cardNumber",
+                       "in": "path",
+                       "required": true,
+                       "schema": {
+                         "type": "string"
+                       }
+                     }
+                   ],
+                   "responses": {
+                     "400": {
+                       "description": "Bad Request",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "404": {
+                       "description": "Not Found",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "403": {
+                       "description": "Forbidden",
+                       "content": {
+                         "*/*": {
+                           "schema": {
+                             "$ref": "#/components/schemas/ApiError"
+                           }
+                         }
+                       }
+                     },
+                     "204": {
+                       "description": "No Content"
+                     }
+                   }
+                 }
+               }
+             },
+             "components": {
+               "schemas": {
+                 "ApiError": {
+                   "type": "object",
+                   "properties": {
+                     "status": {
+                       "type": "string"
+                     },
+                     "reason": {
+                       "type": "string"
+                     },
+                     "message": {
+                       "type": "string"
+                     },
+                     "timestamp": {
+                       "type": "string"
+                     }
+                   }
+                 },
+                 "RegistrationRequest": {
+                   "required": [
+                     "password",
+                     "role",
+                     "username"
+                   ],
+                   "type": "object",
+                   "properties": {
+                     "username": {
+                       "maxLength": 100,
+                       "minLength": 3,
+                       "type": "string",
+                       "description": "Имя пользователя",
+                       "example": "Anton"
+                     },
+                     "password": {
+                       "maxLength": 100,
+                       "minLength": 8,
+                       "type": "string",
+                       "description": "Пароль",
+                       "example": "hcsvugxd"
+                     },
+                     "role": {
+                       "$ref": "#/components/schemas/Role"
+                     }
+                   },
+                   "description": "Запрос на регистрацию"
+                 },
+                 "Role": {
+                   "type": "string",
+                   "description": "Роль",
+                   "example": "USER",
+                   "enum": [
+                     "ADMIN",
+                     "USER"
+                   ]
+                 },
+                 "AuthorizationRequest": {
+                   "required": [
+                     "password",
+                     "username"
+                   ],
+                   "type": "object",
+                   "properties": {
+                     "username": {
+                       "maxLength": 100,
+                       "minLength": 3,
+                       "type": "string",
+                       "description": "Имя пользователя",
+                       "example": "Anton"
+                     },
+                     "password": {
+                       "maxLength": 100,
+                       "minLength": 8,
+                       "type": "string",
+                       "description": "Пароль",
+                       "example": "hcsvugxd"
+                     }
+                   },
+                   "description": "Запрос на авторизацию"
+                 },
+                 "NewCardDto": {
+                   "required": [
+                     "cardNumber",
+                     "cardValidityPeriod",
+                     "cardholderName"
+                   ],
+                   "type": "object",
+                   "properties": {
+                     "cardNumber": {
+                       "maxLength": 19,
+                       "minLength": 19,
+                       "type": "string",
+                       "description": "Номер карты",
+                       "example": "**** **** **** 1234"
+                     },
+                     "cardholderName": {
+                       "maxLength": 100,
+                       "minLength": 3,
+                       "type": "string",
+                       "description": "Имя владельца",
+                       "example": "Anton"
+                     },
+                     "cardValidityPeriod": {
+                       "maxLength": 5,
+                       "minLength": 5,
+                       "type": "string",
+                       "description": "Период действия",
+                       "example": "03/26"
+                     }
+                   }
+                 },
+                 "CardDto": {
+                   "type": "object",
+                   "properties": {
+                     "cardNumber": {
+                       "maxLength": 19,
+                       "minLength": 19,
+                       "type": "string",
+                       "description": "Номер карты",
+                       "example": "**** **** **** 1234"
+                     },
+                     "cardholder": {
+                       "maxLength": 100,
+                       "minLength": 3,
+                       "type": "string",
+                       "description": "Имя владельца",
+                       "example": "Anton"
+                     },
+                     "cardValidityPeriod": {
+                       "maxLength": 5,
+                       "minLength": 5,
+                       "type": "string",
+                       "description": "Период действия",
+                       "example": "03/26"
+                     },
+                     "cardStatus": {
+                       "$ref": "#/components/schemas/CardStatus"
+                     },
+                     "balance": {
+                       "type": "number",
+                       "description": "Баланс",
+                       "format": "double",
+                       "example": 12.34
+                     }
+                   },
+                   "description": "Карта"
+                 },
+                 "CardStatus": {
+                   "type": "string",
+                   "description": "Статус",
+                   "example": "ACTIVE",
+                   "enum": [
+                     "ACTIVE",
+                     "BLOCKED",
+                     "EXPIRED"
+                   ]
+                 },
+                 "UserDto": {
+                   "type": "object",
+                   "properties": {
+                     "username": {
+                       "maxLength": 100,
+                       "minLength": 3,
+                       "type": "string",
+                       "description": "Имя пользователя",
+                       "example": "Anton"
+                     },
+                     "role": {
+                       "$ref": "#/components/schemas/Role"
+                     }
+                   },
+                   "description": "Пользователь"
+                 }
+               }
+             }

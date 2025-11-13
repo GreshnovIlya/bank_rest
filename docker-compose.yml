@@ -1,0 +1,35 @@
+services:
+  bank_rest:
+    build: .
+    container_name: bank_rest
+    ports:
+      - "8080:8080"
+    depends_on:
+      bank_rest_db:
+        condition: service_healthy
+    healthcheck:
+      test: curl -f http://localhost:8080/actuator/health || exit 1
+      timeout: 10s
+      interval: 30s
+      retries: 3
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://bank_rest_db:5432/bank_rest_db
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: password
+
+  bank_rest_db:
+    image: postgres:16.1
+    container_name: bank_rest_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./volumes/postgres/bank_rest_db:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: bank_rest_db
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 5s
+      interval: 5s
+      retries: 10

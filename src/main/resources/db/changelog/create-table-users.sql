@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS users (
+    id BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
+    username VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    role VARCHAR(5) NOT NULL,
+    CONSTRAINT pk_users PRIMARY KEY (id),
+    CONSTRAINT uq_users_username UNIQUE (username)
+);
