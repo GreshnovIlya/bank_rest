@@ -50,6 +50,6 @@ Backend‑приложение на Spring Boot для управления ба
 * Соберите JAR: mvn clean package;
 * Запустите контейнеры: docker compose up -d.
 
-* Сервисы:
+Сервисы:
 * bank_rest — backend‑приложение (порт 8080).
 * bank_rest_db — PostgreSQL (порт 5432).
